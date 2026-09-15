@@ -1,7 +1,8 @@
 <script setup>
+import ProductList from './components/ProductList.vue'
 import logo from './assets/logo.svg'
 
-// The catalogue lives here; the list component that renders it comes next.
+// The catalogue lives here and is handed to the list as a prop.
 const products = [
   { id: 1, name: 'Trek SSL 2017', price: 999.9, description: 'Racing bike.', category: 'Road', discontinued: false, fixedPrice: false, modifiedDate: '2017-06-17', imageUrl: 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&w=800&q=80' },
   { id: 2, name: 'City XT 2015', price: 659.5, description: 'City bike.', category: 'City', discontinued: true, fixedPrice: false, modifiedDate: '2015-03-01', imageUrl: 'https://images.unsplash.com/photo-1606310241970-4858d5d08f6b?auto=format&w=800&q=80' },
@@ -31,7 +32,7 @@ const products = [
       </div>
       <div class="row justify-content-center mt-2">
         <div class="col-12 col-md-8 col-lg-6">
-          <p class="text-center text-muted">The catalogue is on its way.</p>
+          <ProductList :products="products" />
         </div>
       </div>
     </main>
