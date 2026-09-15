@@ -20,7 +20,9 @@ defineProps({
             <dt class="col-5 col-md-6">Category</dt>
             <dd class="col-7 col-md-6">{{ product.category }}</dd>
             <dt class="col-5 col-md-6">Price</dt>
-            <dd class="col-7 col-md-6">{{ product.price.toFixed(2) }} $ <span v-if="product.fixedPrice" class="text-muted">(fixed)</span></dd>
+            <dd class="col-7 col-md-6">{{ product.price.toFixed(2) }} $</dd>
+            <dt class="col-5 col-md-6">Fixed price</dt>
+            <dd class="col-7 col-md-6">{{ product.fixedPrice ? 'Yes' : 'No' }}</dd>
             <dt class="col-5 col-md-6">Status</dt>
             <dd class="col-7 col-md-6" :class="{ 'text-danger': product.discontinued }">{{ product.discontinued ? 'Discontinued' : 'Available' }}</dd>
             <dt class="col-5 col-md-6">Last update</dt>

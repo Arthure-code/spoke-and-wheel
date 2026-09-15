@@ -20,7 +20,7 @@ components, three props, one event, and a single `ref` for the bike picked.
 
 ![A white page with a drawn bicycle logo and the title Spoke & Wheel, then a card headed Our bikes listing five bikes, each with a category pill, Road, City or Trail, and its price: Trek SSL 2017, City XT 2015 in red with a discontinued badge, Cosmic Cobat 2015, Hero DTB 2016 and S-WORKS 2016](preview.png)
 
-![The same page after a click on Cosmic Cobat 2015: its row is highlighted in blue and a detail card under the list shows its picture on the left and, on the right, the name, the description Great bike., the category Trail, the price 499.90 $, the status Available and the last update 2015-05-17](preview-detail.png)
+![The same page after a click on Cosmic Cobat 2015: its row is highlighted in blue and a detail card under the list shows its picture on the left and, on the right, the name, the description Great bike., the category Trail, the price 499.90 $, Fixed price No, the status Available and the last update 2015-05-17](preview-detail.png)
 
 ![The same page on a phone, filling the width, with Trek SSL 2017 selected and its detail card stacked under the list](preview-mobile.png)
 
