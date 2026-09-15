@@ -10,11 +10,43 @@ components, three props, one event, and a single `ref` for the bike picked.
 
 ## Screenshots
 
-Coming with the first release.
+![A white page with a drawn bicycle logo and the title Spoke & Wheel, then a card headed Our bikes listing five bikes, each with a category pill, Road, City or Trail, and its price: Trek SSL 2017, City XT 2015 in red with a discontinued badge, Cosmic Cobat 2015, Hero DTB 2016 and S-WORKS 2016](preview.png)
+
+![The same page after a click on Cosmic Cobat 2015: its row is highlighted in blue and a detail card under the list shows its picture on the left and, on the right, the name, the description Great bike., the category Trail, the price 499.90 $, the status Available and the last update 2015-05-17](preview-detail.png)
+
+![The same page on a phone, filling the width, with Trek SSL 2017 selected and its detail card stacked under the list](preview-mobile.png)
 
 ## How it works
 
-Described with the first release.
+**The data lives in `App.vue`, the rendering in `ProductList.vue`.** The
+array of products is declared once in the root component and handed down as
+a prop; the list component declares that prop with `defineProps` and never
+changes it.
+
+**One `v-for`, one `:key`.** The list renders a button per product, keyed on
+the product's `id` so Vue can track each row if the array ever changes.
+
+**The click goes up, the selection comes down.** A row emits `select` with
+its product; `App.vue` keeps the chosen one in a `ref` and passes it back to
+the list, which highlights the matching row, and to `ProductDetail.vue`,
+which renders it. The child components hold no state of their own.
+
+**The pictures are linked, not stored.** Each product carries an `imageUrl`
+pointing at a public photo on [Unsplash](https://unsplash.com/license), and
+the detail card binds it with `:src`; no image file lives in the repository.
+
+**Red is a class, bound to a boolean.** `:class="{ 'text-danger':
+product.discontinued }"` adds Bootstrap's red text class only when the flag
+is true; a `v-if` badge says why. Nothing about colour is written in the
+script.
+
+**The logo is an SVG drawn for the shop.** Imported by the root component
+and used twice, in the navigation bar and above the title, with an empty
+`alt` since the name sits right next to it.
+
+**The title is a plain constant in the component.** `const title = 'Our
+bikes'` in `<script setup>` is available to the template as is; no `ref`
+is needed for a value that never changes.
 
 ## Running it
 
