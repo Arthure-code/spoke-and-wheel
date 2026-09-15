@@ -1,5 +1,13 @@
 # spoke-and-wheel
 
+[![Build](https://github.com/Arthure-code/spoke-and-wheel/actions/workflows/build.yml/badge.svg)](https://github.com/Arthure-code/spoke-and-wheel/actions/workflows/build.yml)
+[![Quality gate](https://sonarcloud.io/api/project_badges/measure?project=Arthure-code_spoke-and-wheel&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Arthure-code_spoke-and-wheel)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Arthure-code_spoke-and-wheel&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Arthure-code_spoke-and-wheel)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Arthure-code_spoke-and-wheel&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Arthure-code_spoke-and-wheel)
+[![Security rating](https://sonarcloud.io/api/project_badges/measure?project=Arthure-code_spoke-and-wheel&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Arthure-code_spoke-and-wheel)
+[![Code smells](https://sonarcloud.io/api/project_badges/measure?project=Arthure-code_spoke-and-wheel&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Arthure-code_spoke-and-wheel)
+[![Duplicated lines](https://sonarcloud.io/api/project_badges/measure?project=Arthure-code_spoke-and-wheel&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Arthure-code_spoke-and-wheel)
+
 A small bike shop's catalogue: road, city and trail bikes in an array,
 rendered by one Vue component with a category, a price, and a red line for
 the model that is discontinued. Click a bike and a second component shows
