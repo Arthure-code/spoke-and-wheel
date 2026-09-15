@@ -4,8 +4,9 @@ import ProductList from './components/ProductList.vue'
 import ProductDetail from './components/ProductDetail.vue'
 import logo from './assets/logo.svg'
 
-// The catalogue lives here and is handed to the list as a prop; the bike
-// clicked in the list is shown in the detail panel under it.
+// The catalogue lives here and is handed to the list as a prop, with the
+// page size; the bike clicked in the list is shown in the detail panel
+// under it.
 const products = [
   { id: 1, name: 'Trek SSL 2017', price: 999.9, description: 'Racing bike.', discontinued: false, fixedPrice: false, modifiedDate: '2017-06-17', imageUrl: 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&w=800&q=80' },
   { id: 2, name: 'City XT 2015', price: 659.5, description: 'City bike.', discontinued: true, fixedPrice: false, modifiedDate: '2015-03-01', imageUrl: 'https://images.unsplash.com/photo-1606310241970-4858d5d08f6b?auto=format&w=800&q=80' },
@@ -37,7 +38,7 @@ const selected = ref(null)
       </div>
       <div class="row justify-content-center mt-2">
         <div class="col-12 col-lg-10">
-          <ProductList :products="products" :selected="selected" @select="selected = $event" />
+          <ProductList :products="products" :selected="selected" :per-page="2" @select="selected = $event" />
           <ProductDetail v-if="selected" :product="selected" class="mt-4" />
         </div>
       </div>
