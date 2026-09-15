@@ -9,8 +9,8 @@
 [![Duplicated lines](https://sonarcloud.io/api/project_badges/measure?project=Arthure-code_spoke-and-wheel&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=Arthure-code_spoke-and-wheel)
 
 A small bike shop's catalogue: road, city and trail bikes in an array,
-rendered by one Vue component with a category, a price, and a red line for
-the model that is discontinued. Click a bike and a second component shows
+rendered by one Vue component with a description, a price, and a red line
+for the model that is discontinued. Click a bike and a second component shows
 its picture and every detail under the list.
 
 Vue 3 with `<script setup>`, built by Vite, styled with Bootstrap. Two
@@ -18,9 +18,9 @@ components, three props, one event, and a single `ref` for the bike picked.
 
 ## Screenshots
 
-![A white page with a drawn bicycle logo and the title Spoke & Wheel, then a card headed Our bikes listing five bikes, each with a category pill, Road, City or Trail, and its price: Trek SSL 2017, City XT 2015 in red with a discontinued badge, Cosmic Cobat 2015, Hero DTB 2016 and S-WORKS 2016](preview.png)
+![A white page with a drawn bicycle logo and the title Spoke & Wheel, then Our bikes: five rows of three cells, a slate cell with the name, a light grey cell with the description and a slate cell with the price: Trek SSL 2017 Racing bike 999.90 $, City XT 2015 City bike 659.50 $ in red on light cells, Cosmic Cobat 2015 Great bike 499.90 $, Hero DTB 2016 Champion bike 759.00 $ and S-WORKS 2016 Ultra bike 1299.90 $](preview.png)
 
-![The same page after a click on Cosmic Cobat 2015: its row is highlighted in blue and a detail card under the list shows its picture on the left and, on the right, the name, the description Great bike., the category Trail, the price 499.90 $, Fixed price No, the status Available and the last update 2015-05-17](preview-detail.png)
+![The same page after a click on Cosmic Cobat 2015: its three cells turn blue and, under the list, the name, the description Great bike., then Price: 499.90 $, Fixed price? No, Discontinued? No and Modified date: 2015-05-17, with the bike's picture floated on the right](preview-detail.png)
 
 ![The same page on a phone, filling the width, with Trek SSL 2017 selected and its detail card stacked under the list](preview-mobile.png)
 
@@ -43,10 +43,11 @@ which renders it. The child components hold no state of their own.
 pointing at a public photo on [Unsplash](https://unsplash.com/license), and
 the detail card binds it with `:src`; no image file lives in the repository.
 
-**Red is a class, bound to a boolean.** `:class="{ 'text-danger':
-product.discontinued }"` adds Bootstrap's red text class only when the flag
-is true; a `v-if` badge says why. Nothing about colour is written in the
-script.
+**Colour is a class, bound to a boolean.** `:class="{ discontinued:
+product.discontinued, selected: isSelected(product) }"` puts a class on
+the row; the scoped CSS of the component turns the cells red or blue.
+Nothing about colour is written in the script, and every pair of colours
+reaches the 4.5:1 contrast of WCAG AA.
 
 **The logo is an SVG drawn for the shop.** Imported by the root component
 and used twice, in the navigation bar and above the title, with an empty
@@ -68,15 +69,16 @@ any web server.
 
 ## Stack
 
-Vue 3.5 with `<script setup>`, Vite 8, Bootstrap 5.3. Two components, no
-router, no store, no other dependency. The bike photos are public pictures
+Vue 3.5 with `<script setup>`, Vite 8, Bootstrap 5.3 for the page frame
+and scoped CSS for the list. Two components, no router, no store, no other
+dependency. The bike photos are public pictures
 on Unsplash, linked by URL.
 
 ## Résumé
 
 Le catalogue d'une petite boutique de vélos, route, ville et sentier, dans
-un tableau rendu par un composant Vue, avec une catégorie, un prix et une
-ligne rouge pour le modèle discontinué. Un clic sur un vélo affiche sa photo
+un tableau rendu par un composant Vue, avec une description, un prix et
+une ligne rouge pour le modèle discontinué. Un clic sur un vélo affiche sa photo
 et tous ses détails dans un second composant, sous la liste. Le tableau et
 le vélo choisi vivent dans `App.vue` ; la liste les reçoit par props, ne les
 modifie jamais, et remonte le clic par un événement `select`. Les photos
