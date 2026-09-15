@@ -10,17 +10,19 @@
 
 A small bike shop's catalogue: road, city and trail bikes in an array,
 rendered by one Vue component with a description, a price, and a red line
-for the model that is discontinued. Click a bike and a second component shows
-its picture and every detail under the list.
+for the model that is discontinued. Search by name, sort by name, price or date
+in either direction, page through two at a time; click a bike and a second
+component shows its picture and every detail under the list.
 
 Vue 3 with `<script setup>`, built by Vite, styled with Bootstrap. Two
-components, three props, one event, and a single `ref` for the bike picked.
+components, four props, one event, a handful of `ref`s and the computed
+chain filtered, sorted, paginated.
 
 ## Screenshots
 
-![A white page with a drawn bicycle logo and the title Spoke & Wheel, then Our bikes: five rows of three cells, a slate cell with the name, a light grey cell with the description and a slate cell with the price: Trek SSL 2017 Racing bike 999.90 $, City XT 2015 City bike 659.50 $ in red on light cells, Cosmic Cobat 2015 Great bike 499.90 $, Hero DTB 2016 Champion bike 759.00 $ and S-WORKS 2016 Ultra bike 1299.90 $](preview.png)
+![A white page with a drawn bicycle logo and the title Spoke & Wheel, then Our bikes: a tool bar with Sort by Name, Price, Date and a Search by name field, a pager reading Previous, Page 1 of 3, Next with Previous greyed out, then two rows of three cells, a slate cell with the name, a light grey cell with the description and a slate cell with the price: Trek SSL 2017 Racing bike 999.90 $ and City XT 2015 City bike 659.50 $ in red on light cells](preview.png)
 
-![The same page after a click on Cosmic Cobat 2015: its three cells turn blue and, under the list, the name, the description Great bike., then Price: 499.90 $, Fixed price? No, Discontinued? No and Modified date: 2015-05-17, with the bike's picture floated on the right](preview-detail.png)
+![The same page sorted by price, the Price button showing an up arrow, page 1 of 3 listing Cosmic Cobat 2015 499.90 $ and City XT 2015 659.50 $; Cosmic Cobat is clicked, its three cells are blue and, under the list, the name, the description Great bike., then Price: 499.90 $, Fixed price? No, Discontinued? No and Modified date: 2015-05-17, with the bike's picture floated on the right](preview-detail.png)
 
 ![The same page on a phone, filling the width, with Trek SSL 2017 selected and its detail card stacked under the list](preview-mobile.png)
 
@@ -33,6 +35,18 @@ changes it.
 
 **One `v-for`, one `:key`.** The list renders a button per product, keyed on
 the product's `id` so Vue can track each row if the array ever changes.
+
+**Search, sort and paging are a chain of computed properties.** The search
+field is bound with `v-model` to `filterName`; `filteredProducts` keeps the
+names that match it, case-insensitive. `sortedFilteredProducts` copies that
+result and sorts it on the property named by `sortName`; a second click on
+the same button flips `sortDir`. `sortedFilteredPaginatedProducts` slices
+one page of `perPage` bikes, a prop the parent sets to 2. Nothing is
+recomputed unless one of its inputs changes.
+
+**Changing the page drops the selection.** A `watch` on the page number
+emits `select` with `null`; a new search or a new order also brings the
+page back to 1, so the pager never points past the end of a shorter list.
 
 **The click goes up, the selection comes down.** A row emits `select` with
 its product; `App.vue` keeps the chosen one in a `ref` and passes it back to
@@ -78,8 +92,11 @@ on Unsplash, linked by URL.
 
 Le catalogue d'une petite boutique de vélos, route, ville et sentier, dans
 un tableau rendu par un composant Vue, avec une description, un prix et
-une ligne rouge pour le modèle discontinué. Un clic sur un vélo affiche sa photo
-et tous ses détails dans un second composant, sous la liste. Le tableau et
+une ligne rouge pour le modèle discontinué. On cherche par nom, on trie par
+nom, prix ou date dans les deux sens, on tourne les pages deux vélos à la
+fois, le tout par une chaîne de propriétés calculées. Un clic sur un vélo
+affiche sa photo et tous ses détails dans un second composant, sous la
+liste; changer de page efface la sélection. Le tableau et
 le vélo choisi vivent dans `App.vue` ; la liste les reçoit par props, ne les
 modifie jamais, et remonte le clic par un événement `select`. Les photos
 sont des images publiques d'Unsplash, liées par adresse, rien n'est stocké
