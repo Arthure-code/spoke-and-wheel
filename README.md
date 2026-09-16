@@ -81,11 +81,22 @@ npm run dev
 `npm run build` writes the static site to `dist/`, which can be served from
 any web server.
 
+## Tests
+
+```bash
+npm test
+```
+
+Sixteen Vitest tests mount the components with Vue Test Utils and drive
+them the way a person would: type in the search field, click the sort
+buttons twice, page to the end and back, click a bike. `npm run coverage`
+adds the coverage report, which the workflow hands to SonarCloud.
+
 ## Stack
 
 Vue 3.5 with `<script setup>`, Vite 8, Bootstrap 5.3 for the page frame
 and scoped CSS for the list. Two components, no router, no store, no other
-dependency. The bike photos are public pictures
+runtime dependency. Vitest and Vue Test Utils for the tests. The bike photos are public pictures
 on Unsplash, linked by URL.
 
 ## Résumé
