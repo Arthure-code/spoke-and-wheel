@@ -36,13 +36,17 @@ function sort(name) {
   sortName.value = name
 }
 
+// Numbers, strings and ISO dates all compare with < and >.
+function compare(x, y) {
+  if (x < y) return -1
+  if (x > y) return 1
+  return 0
+}
+
 const sortedFilteredProducts = computed(() => {
   const name = sortName.value
   if (name === '') return filteredProducts.value
-  return [...filteredProducts.value].sort((a, b) => {
-    const [x, y] = [a[name], b[name]]
-    return (x < y ? -1 : x > y ? 1 : 0) * sortDir.value
-  })
+  return [...filteredProducts.value].sort((a, b) => compare(a[name], b[name]) * sortDir.value)
 })
 
 // Pagination: the page number starts at 1; the buttons stop at both ends.
@@ -71,7 +75,10 @@ watch([filterName, sortName, sortDir], () => {
   emit('select', null)
 })
 
-const sortLabel = (name) => (sortName.value === name ? (sortDir.value === 1 ? ' ↑' : ' ↓') : '')
+function sortLabel(name) {
+  if (sortName.value !== name) return ''
+  return sortDir.value === 1 ? ' ↑' : ' ↓'
+}
 </script>
 <template>
   <section>
