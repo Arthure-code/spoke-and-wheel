@@ -87,10 +87,13 @@ any web server.
 npm test
 ```
 
-Sixteen Vitest tests mount the components with Vue Test Utils and drive
-them the way a person would: type in the search field, click the sort
-buttons twice, page to the end and back, click a bike. `npm run coverage`
-adds the coverage report, which the workflow hands to SonarCloud.
+Sixteen tests, set up the way the [Vue guide](https://vuejs.org/guide/scaling-up/testing.html)
+describes: Vitest configured in `vite.config.js` with `globals: true` and a
+`happy-dom` environment, components mounted with Vue Test Utils, elements
+found by `data-testid`, and only the public side of each component under
+test: props and clicks go in, rendered text, classes and emitted events
+come out. `npm run coverage` adds the coverage report, which the workflow
+hands to SonarCloud.
 
 ## Stack
 
