@@ -86,24 +86,25 @@ function sortLabel(name) {
     <p class="text-muted small">Click a bike to see its picture and details.</p>
     <form class="product-tools" @submit.prevent>
       <span>Sort by:</span>
-      <button type="button" class="btn btn-light btn-sm border" :aria-pressed="sortName === 'name'" @click="sort('name')">Name{{ sortLabel('name') }}</button>
-      <button type="button" class="btn btn-light btn-sm border" :aria-pressed="sortName === 'price'" @click="sort('price')">Price{{ sortLabel('price') }}</button>
-      <button type="button" class="btn btn-light btn-sm border" :aria-pressed="sortName === 'modifiedDate'" @click="sort('modifiedDate')">Date{{ sortLabel('modifiedDate') }}</button>
+      <button type="button" class="btn btn-light btn-sm border" data-testid="sort-name" :aria-pressed="sortName === 'name'" @click="sort('name')">Name{{ sortLabel('name') }}</button>
+      <button type="button" class="btn btn-light btn-sm border" data-testid="sort-price" :aria-pressed="sortName === 'price'" @click="sort('price')">Price{{ sortLabel('price') }}</button>
+      <button type="button" class="btn btn-light btn-sm border" data-testid="sort-date" :aria-pressed="sortName === 'modifiedDate'" @click="sort('modifiedDate')">Date{{ sortLabel('modifiedDate') }}</button>
       <label for="filterName" class="ms-auto">Search by name:</label>
-      <input id="filterName" v-model="filterName" type="search" class="form-control form-control-sm w-auto" autocomplete="off">
+      <input id="filterName" v-model="filterName" type="search" class="form-control form-control-sm w-auto" data-testid="search" autocomplete="off">
     </form>
     <nav class="product-pager" aria-label="Pages of bikes">
-      <button type="button" class="btn btn-light btn-sm border" :disabled="currentPage === 1" @click="previousPage">&lt; Previous</button>
-      <span aria-live="polite">Page {{ currentPage }} of {{ pageCount }}</span>
-      <button type="button" class="btn btn-light btn-sm border" :disabled="currentPage === pageCount" @click="nextPage">Next &gt;</button>
+      <button type="button" class="btn btn-light btn-sm border" data-testid="previous" :disabled="currentPage === 1" @click="previousPage">&lt; Previous</button>
+      <span aria-live="polite" data-testid="page">Page {{ currentPage }} of {{ pageCount }}</span>
+      <button type="button" class="btn btn-light btn-sm border" data-testid="next" :disabled="currentPage === pageCount" @click="nextPage">Next &gt;</button>
     </nav>
-    <p v-if="sortedFilteredPaginatedProducts.length === 0" class="text-muted">No bike matches that name.</p>
+    <p v-if="sortedFilteredPaginatedProducts.length === 0" class="text-muted" data-testid="no-match">No bike matches that name.</p>
     <div class="product-list">
       <button
         v-for="product in sortedFilteredPaginatedProducts"
         :key="product.id"
         type="button"
         class="product-row"
+        data-testid="product"
         :class="{ discontinued: product.discontinued, selected: isSelected(product) }"
         :aria-pressed="isSelected(product)"
         @click="$emit('select', product)"
